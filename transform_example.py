@@ -8,3 +8,7 @@ for n in numbers:
         results.append(n + 3)
 
 print(results)
+
+# Learned:
+# - append() is required to store values
+# - changing a variable does not update a list automatically
