@@ -1,5 +1,4 @@
-z .ipynb_checkpoints/
+ .ipynb_checkpoints/
   __pycache__/  
   anaconda_projects/
   .vscode/
-  
