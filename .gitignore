@@ -4,3 +4,4 @@ anaconda_projects/
 .vscode/
 .env
 .DS_Store
+llm_helpers.py
