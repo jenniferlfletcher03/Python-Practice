@@ -180,7 +180,7 @@ class Room:
     it's true).
     """
 
-    def __init__(self, participants: list[Participant], human_name: str = "jen"):
+    def __init__(self, participants: list[Participant], human_name: str = "Jen"):
         self.transcript = Transcript()
         # Map name -> Participant, so we can look one up by who Jen addressed.
         self.participants = {p.name: p for p in participants}
