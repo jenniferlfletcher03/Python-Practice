@@ -185,6 +185,7 @@ class Room:
         # Map name -> Participant, so we can look one up by who Jen addressed.
         self.participants = {p.name: p for p in participants}
         self.human_name = human_name
+        self._next_responder_idx = 0  # for round-robin in REST STATE 
 
     def human_says(self, text: str) -> Turn:
         """Record something the human said. Returns the Turn (for convenience)."""
@@ -236,12 +237,12 @@ class Room:
                         self.human_says(interrupt)
                         break
 
-            # --- REST STATE: Jen spoke, one model responds ---
+            # --- REST STATE: Round Robin ---
             elif user_input:
                 self.human_says(user_input)
-                # For now, the first participant answers. (Later: let Jen
-                # address a specific model, e.g. "4.8: ..." — parked decision.)
-                responder = model_names[0]
+                # rotate through participant - turned based
+                responder = model_names[self._next_responder_idx]
+                self._next_responder_idx = (self._next_responder_idx + 1) % len(model_names)
                 turn = self.let_respond(responder)
                 print(f"[{turn.speaker}]: {turn.content}\n")
 
