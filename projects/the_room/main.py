@@ -6,10 +6,14 @@ GUARANTEES the transcript is saved no matter how the session ends.
 
 
 from datetime import datetime
+from pathlib import Path
 
 import anthropic
+from dotenv import load_dotenv
 
 from room import Participant, Room
+
+load_dotenv(Path(__file__).parent/".env")  # loads the .env file in this folder, making the key available in the environment
 
 
 def main():
